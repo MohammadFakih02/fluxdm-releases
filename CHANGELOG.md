@@ -2,7 +2,7 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
-## Unreleased
+## 3.1.0 — 2026-11-02
 
 ### Look and layout
 - Download cards are easier to read: a larger title, one status per card (no "Paused" pill plus "Paused at 86%"), no second line repeating the file name (it shows on hover and in the details), and finished downloads drop their full progress bar and "Done" pill. Cards have a visible edge so they no longer run together.
