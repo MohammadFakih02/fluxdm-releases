@@ -2,9 +2,12 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
-## Unreleased
+## 3.1.2 — 2026-11-02
 
 - The timer line along the bottom of a notification runs smoothly instead of in small jumps.
+- Video thumbnails fill the whole banner again, as they did in 3.1.0, instead of sitting in a box on the right.
+- A YouTube video's icon is now its channel's picture rather than a thumbnail squeezed into a square. Videos already in the list get it too.
+- FluxDM's own logo in its messages ("FluxDM is still running", updates) no longer sits on a grey square.
 
 ## 3.1.1 — 2026-11-02
 
