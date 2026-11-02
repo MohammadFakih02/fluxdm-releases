@@ -20,6 +20,9 @@ FluxDM 2 is a rewrite of the original .NET/WPF FluxDM in Rust + Tauri. It reads 
 
 Download `FluxDM-Setup-<version>.exe` from the [latest release](https://github.com/MohammadFakih02/fluxdm-releases/releases/latest) and run it.
 It installs for your Windows account only (no admin) and adds a Start Menu entry and the `.torrent` file association.
+The setup has one page and one button: it closes FluxDM itself, and downloads that were running carry on afterwards.
+FluxDM then updates itself: it looks for a new version every day and installs it once nothing is downloading and
+its window is closed (Settings → Updates).
 FluxDM updates itself from the same page (Settings → Updates).
 The files aren't code-signed, so Windows SmartScreen may say "Windows protected your PC": click **More info → Run anyway**.
 

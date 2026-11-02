@@ -2,6 +2,23 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.1.1 — 2026-11-02
+
+- Games, programs and updates with release words in their names get their icon and banner again. Names like "XCOM Enemy Unknown The Complete Edition MULTi9-ElAmigos", "Absolum Update Build r35192-RUNE", "Cloudflare_WARP_2026.8.2110.0" or "RobloxPlayerInstaller" are now searched without the version, "Setup", "Update Build", "MULTi9" and "22H2", and with joined words split. Before, nothing matched, and the item wasn't tried again for a week. "Alan-Wake-2-SteamRIP.com" no longer loses its whole name.
+- A new download's icon and banner arrive in seconds again. After FluxDM's art rules change, every saved item is checked once more, and a new download used to wait behind all of those checks. It now goes first. A first lookup that failed on the network is tried again after a minute instead of ten.
+- A new setup, in one window: it says whether it will install, update, reinstall or go back a version, and has one button. It closes FluxDM itself (no "file in use" box), and downloads that were running carry on afterwards. You can choose the folder on a first install. The uninstaller says what it removes, gives magnet links back to the app that had them (with its icon), removes start with Windows and FluxDM's Default apps entry, and has a box to also delete your downloads list and settings (downloaded files always stay).
+- Updates: FluxDM looks for a new version every day, not only when it starts. With "Install updates by themselves" on (Settings → Updates, on by default), an update goes in once nothing is downloading and the window is closed. FluxDM starts again in the tray, and says once that it was updated. Updating from the window also starts the new version straight away, wherever FluxDM is installed.
+- Films and shows downloaded under release names such as "Superman 2025 1080p WEB DL HEVC x265" get their poster and banner again. The search now uses only the title before the year and release tags, and prefers the film from that year.
+- YouTube and other video thumbnails are shown whole: on the right of the details banner and the list card (over a blurred copy), and letterboxed in the icon, instead of cropped so the burnt-in text was cut off.
+- The User-Agent FluxDM sends to sites now carries the app's real version (for example FluxDM/3.1.0, not the old FluxDM/1.0 or 2.0 saved by earlier versions). One you typed yourself is kept.
+- The sidebar opens expanded on a new install, just wide enough for its labels; a copy that only had the old collapsed default opens expanded once. Double-clicking its edge toggles between collapsed and that width.
+- The download speed shown is right within a second of starting. It used to begin from the first reading, taken while the connections were still opening, and creep up for 10–30 seconds, so a download looked stuck at a few KB/s while it was already running at full speed (a small file could finish before the number caught up). It is now the average over the last 3 seconds.
+- With a download, queue or scheduled speed limit on, a download that starts now gets the whole limit straight away instead of climbing from a crawl for half a minute, and the speed no longer dips and recovers under the limit whenever the server has a slow moment. Several downloads still share the limit fairly.
+- A Discord button next to the list's actions turns Discord notifications on and off. It glows while they're on and is dim when they're off. With no webhook link yet, or a link Discord refused (a red dot), clicking it opens Settings at the Discord section.
+- Queues: each download in the list has up and down arrows to change the order (dragging still works).
+- Queues: the Name column can be resized like the others; a wide Name column scrolls the list sideways while the arrows and remove button stay in view.
+- Settings → Discord notifications explains how to get the webhook link in numbered steps, with Discord's own names (Edit Channel, Integrations, Webhooks, Copy Webhook URL).
+
 ## 3.1.0 — 2026-11-02
 
 ### Look and layout
