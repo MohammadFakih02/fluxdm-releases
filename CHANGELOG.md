@@ -2,6 +2,10 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## Unreleased
+
+- The timer line along the bottom of a notification runs smoothly instead of in small jumps.
+
 ## 3.1.1 — 2026-11-02
 
 - Games, programs and updates with release words in their names get their icon and banner again. Names like "XCOM Enemy Unknown The Complete Edition MULTi9-ElAmigos", "Absolum Update Build r35192-RUNE", "Cloudflare_WARP_2026.8.2110.0" or "RobloxPlayerInstaller" are now searched without the version, "Setup", "Update Build", "MULTi9" and "22H2", and with joined words split. Before, nothing matched, and the item wasn't tried again for a week. "Alan-Wake-2-SteamRIP.com" no longer loses its whole name.
