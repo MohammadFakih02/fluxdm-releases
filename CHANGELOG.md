@@ -4,6 +4,23 @@ What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
 ## Unreleased
 
+## 3.3.0 — 2026-11-03
+
+### Changed
+- **A download whose link expired offers "Refresh link…" right in its header** (in place of Copy link), so the fix is one click away instead of inside the ⋯ menu or the Options tab.
+- **Video errors explain themselves:** a quality the video doesn't come in, a removed or region-blocked video, "too many requests", a full drive, missing ffmpeg and an unreachable page each say what happened and what to do, instead of yt-dlp's raw message.
+- **Torrent Peers tab:** while a torrent is running but no peers are connected yet it says "Connecting to peers…" / "No peers connected yet" instead of "Start the torrent", the Peers card shows the connected count while the live numbers load, and the small peer table fits its column instead of cutting off the upload speed. Piece counts use thousands separators everywhere.
+- **"Backup links" everywhere:** the Mirrors tab and its "Add mirror…" button now use the same name as the Options tab, the Add window and the right-click menu. The right-click "Copy URL" is now "Copy link", like the button.
+- **Queue editor:** the retry fields are number-sized like "At the same time", and the 60-second countdown note sits under "When it finishes" and only shows when a finish action is picked.
+- **Phone remote:** a button press that fails says so instead of doing nothing, and when the PC can't be reached the page explains what to check and dims the stale list until it reconnects.
+- Screen readers get names for the Add window's folder, file name, checksum and upload-limit boxes and for each file's checkbox in a torrent; the folder arrows in a torrent's file list are easier to hit.
+- FluxDM saves its lists less often to disk while downloading: settings, queues and statistics are only rewritten when they actually changed (before, all four files were rewritten, flushed and backed up every five seconds).
+
+### Fixed
+- Messages that point to a setting now name the real page (Settings → Videos and audio, Settings → Behaviour) instead of pages that don't exist ("Video", "Videos", "General").
+- Enter and Space on a focused button, tab or switch press that control again; before, they opened or paused the selected download instead.
+- Queue members with an unknown size show "—" instead of "?".
+
 ## 3.2.0 — 2026-11-03
 
 ### Added
