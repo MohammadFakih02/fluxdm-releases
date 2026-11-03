@@ -23,7 +23,6 @@ It installs for your Windows account only (no admin) and adds a Start Menu entry
 The setup has one page and one button: it closes FluxDM itself, and downloads that were running carry on afterwards.
 FluxDM then updates itself: it looks for a new version every day and installs it once nothing is downloading and
 its window is closed (Settings → Updates).
-FluxDM updates itself from the same page (Settings → Updates).
 The files aren't code-signed, so Windows SmartScreen may say "Windows protected your PC": click **More info → Run anyway**.
 
 It runs on Windows 10/11. The only runtime it uses is Microsoft Edge WebView2, which comes with Windows 11 and
@@ -37,6 +36,8 @@ current Windows 10. If it's missing, the setup installs it.
   - Backup links (mirrors) are used in parallel. Each one is checked to serve the same bytes before it helps.
   - MD5 / SHA-1 / SHA-256 / SHA-512 verification; Hugging Face's published SHA-256 is picked up automatically.
   - Fresh links for expired downloads keep the bytes you already have.
+  - **Move…** beside "Saving to" in the details (or right-click → *Move to folder…*) moves any download, finished or
+    not, to another folder; an unfinished one carries on there.
 - **Videos:** yt-dlp + ffmpeg, fetched once from their official releases on first use. Pick a quality up to
   4K, audio-only MP3/M4A, or whole playlists. Browser cookies can be used for age-restricted or members-only
   videos.
@@ -50,14 +51,14 @@ current Windows 10. If it's missing, the setup installs it.
   - *Stop sharing* / *Resume sharing* on a finished torrent (right-click).
   - Force recheck/reannounce, move data, add trackers, export .torrent, copy the magnet link.
   - **Download in order** (right-click): fetches each file from its first piece to its last, so a video can be watched while it downloads.
-  - Set location on an unfinished torrent moving to another drive offers to start over there instead of copying the full-size placeholder files.
+  - *Move to folder* on an unfinished torrent going to another drive offers to start over there instead of copying the full-size placeholder files.
 - **Organising:** categories, tags, queues with a scheduler that can start and stop queues at set times on
   chosen days, catching up within the current window after a late start or sleep, including overnight windows.
   Queues can stay enabled when empty and retry failures with their own count and delay. Add remembers the last queue.
   Manual downloads run up to three at once by default, configurable in Settings > Downloads.
   When a queue finishes, FluxDM can exit, sleep, hibernate, shut down or restart, with a
   60-second countdown you can cancel. Finish actions are skipped while other downloads are active or waiting; failed batches report their failure count without running an action.
-- **Main window:** icon filters, resizable download cards, saved sorting and optional grouping by date, status, type, site or queue (ungrouped by default), and details on the right. The list’s More menu keeps bulk actions, Columns and an optional table view. The footer shows free space and download/upload limits; its upload picker sets both torrent phases, with separate limits in Settings and each torrent?s Options tab.
+- **Main window:** icon filters, resizable download cards, saved sorting and optional grouping by date, status, type, site or queue (ungrouped by default), and details on the right. The list’s More menu keeps bulk actions, Columns and an optional table view. The footer shows free space and download/upload limits; its upload picker sets both torrent phases, with separate limits in Settings and each torrent's Options tab.
 - **Artwork:** Keyless Steam, Microsoft Store, PlayStation and GOG banners, with smaller Steam and web images as fallbacks. Programs and ISO images also try vendor, GitHub, referrer/host, Wikipedia, Snapcraft and Flathub artwork. Screenshots are subdued, and publisher/distro colours tint icon washes. Wide images retain their proportions when the window grows.
 - **Storage and proxy:** optional unfinished folders for new HTTP/torrent downloads, regular-file collision choices, and None/System/HTTP/SOCKS5 proxies. SOCKS5 torrent TCP peers disable uTP; DHT/UDP remain direct.
 - **Speed:** a global limit, per-queue and per-download limits, and a speed schedule with selected weekdays and overnight windows.

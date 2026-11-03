@@ -2,6 +2,55 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## Unreleased
+
+## 3.2.0 — 2026-11-03
+
+### Added
+- **Pause all and Start/Stop queue sit on the toolbar:** Pause all is always visible (it was hidden in the More menu), and the queue button starts or stops the queue you're looking at, or the only queue; with several queues it opens a short list.
+- Right-click menus work with the keyboard (arrows, Right/Left for submenus, Enter), and greyed-out items say why on hover ("Available once the download finishes").
+- **Drop-down lists are FluxDM's own now instead of the plain Windows ones:** rounded, animated, the chosen value marked with an accent bar, and they open upwards when there's no room below. Arrow keys, Home/End, Enter, Esc and typing a letter work as before.
+- **Any download can be moved to another folder:** Move… next to "Saving to" in the details, or right-click → Move to folder…. Before, only torrents could be moved, from a menu item at the bottom called "Set location". A finished file moves with it; an unfinished one takes its partial file along and carries on in the new folder. Videos can be moved once they finish.
+
+### Changed
+- **The download list does far less work while things download:** a moving download now updates its numbers in place instead of rebuilding its card (and re-creating its pictures) twice a second. With 300 downloads and 30 active, each update went from about 520 new page elements and 48 re-created pictures to 18 and none. Group headings are reused instead of rebuilt.
+- While the window is hidden in the tray or minimized, FluxDM stops building list updates nobody sees (they held the list lock for every download twice a second). Showing the window catches up at once.
+- Toolbar buttons that can't do anything for the selection (Pause on something already paused, anything with nothing selected) are disabled instead of silently doing nothing, and the count says "3 of 7 selected" when several are picked.
+- **The details panel says something useful in every state:** several downloads selected, nothing selected, or an empty list. Empty Connections, Trackers, Files, Peers and Pieces tabs explain why (a video, not started yet, finished, waiting for the torrent's details) instead of showing a bare table.
+- Banner titles stay readable over busy pictures (video thumbnails with their own headlines) thanks to a soft shade behind the text.
+- **The footer stays on one line in narrow windows:** the paused/queued counts go first, then the limit labels give way to small ↓/↑ marks.
+- **The sidebar fades at the edge when there are more categories to scroll to.**
+- **Add window:** the video options (quality, playlist, part) sit with the form instead of inside Advanced, and checksum and backup links, which only apply to plain files, are hidden for videos and torrents rather than greyed out. A torrent's file list gets enough room to scan, and the name box explains itself when several links are added.
+- **Settings:** options that only matter while a switch is on (speed schedule hours and limit, phone remote port and PIN) fade while it's off. The phone remote's PIN lockout text now mentions the global lockout too.
+- **Statistics:** dates sit under their bar and the last one is no longer cut off; a faint line marks the busiest day with its amount, and today's bar stands out.
+- Network failures read in plain words ("The site's address couldn't be found", "The server refused the connection", "The server closed the connection"…), and a file held by another program says so and can be resumed.
+- **Short colour transitions** on buttons and cards and a sliding tab underline; all motion switches off with Windows' reduced-motion setting.
+- Menus (right-click, presets, More) share the new look, and scrollbars are slim pills that stay faint until you hover the area and take the accent colour while dragged.
+- **Patch notes in the update window show bold text, code and links properly** instead of raw `**` marks.
+- Names that are only a code ("d83e47b5-63b8-…", "sha256-…") are no longer searched, so they don't hold up the art for other downloads.
+- **Game lookups are faster:** the banner picture is fetched once instead of twice, and the square icon is searched alongside the banner.
+- Known programs (7-Zip, Discord, VLC, Firefox, Chrome, Python, Blender…) are found under their real name, with their real logo. A screenshot or photo is never used as a program's icon any more; until the installer is downloaded such a program shows no picture, then the installer's own icon.
+- **Pictures of downloads you removed long ago are cleaned out of FluxDM's data folder.**
+- **The taskbar and tray icon fills its square and is centred, instead of sitting small and to the left.**
+
+### Fixed
+- The connection bar no longer draws eight identical fake segments when FluxDM has no per-connection data (videos, downloads that haven't started); it shows one honest bar. "Started" says "Not yet" instead of a dash, a size the server never sent reads "Size not known yet" instead of "of ?", and the "?" on failed cards is gone.
+- **A finished download's Average speed is no longer blank.** It came from a speed log that only covers the last two minutes and isn't saved; it's now the size over the time data was actually moving. Downloads finished before this keep the blank card hidden instead.
+- **"Started" in the details shows the date when it wasn't today.**
+- **The Add window finds a game's icon and banner in a few seconds again.** It was waiting behind FluxDM's background art checks, and behind its own earlier searches for the link's code name.
+- **Icons cut from a tall cover no longer slice through the game's title.** XCOM showed only the bottom half of its name; the frame now moves or zooms out to keep lettering whole. Icons made before are redone once.
+- A download that gets its real name only after it starts (common with file hosts) is now looked up again under that name. Before, the search for the temporary name found nothing and the item stayed without art for a week.
+- **Art you found by typing a name (Icon ▸ Find art) is kept after a restart instead of being thrown away.**
+- **Logos are no longer cropped like photos.** Ubuntu's icon was "ub" beside half its symbol; a logo now gives its symbol, shown whole. A see-through wordmark is no longer used as a banner.
+- **Old YouTube thumbnails lose the black bars above and below the picture.**
+- **The banner above the details no longer shifts a moment after it appears.**
+- **A video's burnt-in thumbnail headline no longer competes with the title in the download list.**
+- **Your downloads list survives a power cut or a hard reset in the middle of a save:** FluxDM writes the file to disk completely before replacing the old one, and falls back to the copy from the save before if the file is damaged.
+- Finishing a download whose unfinished file is on another drive no longer freezes the window while it's copied, and a file briefly held by an antivirus no longer makes the last step fail.
+- The phone remote's PIN can no longer be read by a website through a trick called DNS rebinding, and too many wrong PINs from any devices pause the remote for 15 minutes.
+- **Settings:** the descriptions beside "Look", "App icon", "Glass" and the art options were shifted by one row, and so were the descriptions and icons of the pages from "Discord notifications" down. Each is in its place again.
+- **The Add window's art panel is lower, so "Advanced" no longer slides under the buttons.**
+
 ## 3.1.2 — 2026-11-02
 
 - The timer line along the bottom of a notification runs smoothly instead of in small jumps.
