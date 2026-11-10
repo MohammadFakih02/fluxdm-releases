@@ -55,6 +55,7 @@ current Windows 10. If it's missing, the setup installs it.
 - **Organising:** categories, tags, queues with a scheduler that can start and stop queues at set times on
   chosen days, catching up within the current window after a late start or sleep, including overnight windows.
   Queues can stay enabled when empty and retry failures with their own count and delay. Add remembers the last queue.
+  Failures are told apart: a refused or expired link, a missing file or a full disk stop with the exact reason, a busy server's Retry-After is obeyed, temporary failures retry by themselves (5, 15, 60 minutes, or when the internet is back), stuck connections are replaced, and a Health tab and page show what is wrong with one-click fixes.
   Manual downloads run up to three at once by default, configurable in Settings > Downloads.
   When a queue finishes, FluxDM can exit, sleep, hibernate, shut down or restart, with a
   60-second countdown you can cancel. Finish actions are skipped while other downloads are active or waiting; failed batches report their failure count without running an action.
