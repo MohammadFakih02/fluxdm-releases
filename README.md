@@ -75,6 +75,7 @@ current Windows 10. If it's missing, the setup installs it.
   - FluxDM can become the system's `magnet:` handler. If Windows still has another app (e.g. qBittorrent) set as the default, FluxDM opens Settings → Default apps for you to pick FluxDM for MAGNET.
 - **Blank-window protection:** the app keeps WebView2 rendering, repaints a freshly shown window, and has a tray item *Reload window* if it ever looks blank.
 - **Phone remote:** a PIN-protected web page on your home Wi-Fi with a QR code to pair. No app needed.
+- **Android app:** scan the QR code in the Devices window with your phone's camera to download it.
 - **Updates:** Settings → Updates checks this repository's releases (any `owner/repo` can be set).
 
 What's new in each version: [CHANGELOG.md](CHANGELOG.md). FluxDM downloads the new exe,

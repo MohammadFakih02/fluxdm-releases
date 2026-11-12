@@ -2,6 +2,11 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.5.1 — 2026-11-12
+
+- **Get the phone app with a QR code:** the PC's Devices window now has a "Get the Android app" card. Scan the code with your phone's camera and the matching Android app starts downloading. It also has a Copy link button. If the app is already on your phone you don't need it: the app updates itself.
+- **The Android download is half the size:** about 15 MB instead of 30 MB. It takes the same space once installed.
+
 ## 3.5.0 — 2026-11-12
 
 ### A real phone app
