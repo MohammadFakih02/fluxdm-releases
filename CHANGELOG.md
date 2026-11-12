@@ -2,8 +2,10 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
-## 3.5.2 — not released yet
+## 3.5.2 — 2026-11-12
 
+- **Torrents download again.** Since 3.4.0 a new or resumed torrent could stay at 0 peers and 0% forever ("Downloading" with no trackers, DHT or peers), on the PC and on Android. The torrent engine dropped its peer sources when a torrent was started while it was still checking its files, which FluxDM does every time. Torrents now find peers within seconds.
+- **Moving a downloading torrent works again.** After *Move to folder* (or the Move… button), the torrent restarted in the new folder with no peers and never continued. It now carries on downloading there.
 - **Game icons use the PC art first.** A game found on Steam gets its icon from Steam's own cover, not a console store's box art (Portal 2 showed its Xbox 360 cover). Games Steam doesn't have now try GOG's cover first, then the PlayStation and Microsoft stores. Downloads already in your list get their icon redone once.
 
 ## 3.5.1 — 2026-11-12
