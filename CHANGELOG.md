@@ -2,6 +2,48 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.5.0 — 2026-11-12
+
+### A real phone app
+- **FluxDM on Android has its own phone screens** instead of the PC window squeezed onto a phone: four tabs at the bottom (Downloads, Browse, Queues, Devices), a top bar on every screen and a + button to add a download.
+- **Downloads:** tap a download to open its page (Open and Share when finished, Pause or Resume, connections with a Change button). Swipe right to pause or resume, left to delete (FluxDM asks first). Long-press to select several. Lists of thousands of downloads scroll smoothly.
+- **Add screen:** a proper phone screen over wherever you were, with several links, file name, folder, queue, connections, speed limit and the file list for torrents. A shared link never pops the keyboard, and the Start button stays above it.
+- **Queues tab:** each queue has its own page with its downloads in order, Start/Stop, a schedule (days, start and stop time), how many at once and a speed limit.
+- **Settings** is a list of sections, one page each; every change applies at once.
+- **Arabic** with a right-to-left layout (Settings > Appearance > Language: System / English / العربية). Sizes, speeds and file names stay left-to-right.
+- **Tablets and landscape:** a side rail instead of the bottom bar, with the open download shown beside the list.
+- TalkBack can read and open downloads.
+
+### Downloading on Android
+- **Queues can wait for the right moment:** Wi-Fi only, only while charging, or only above a battery level. A waiting queue says why ("Waiting for the charger") and carries on by itself.
+- **Scheduled queues start on time** even when Android has closed FluxDM, and again after the phone restarts. If FluxDM can't open by itself, a notification asks you to tap it.
+- **No more 6-hour limit:** Android 15 no longer stops long downloads after six hours a day.
+- **A notification per download** with progress, speed, time left, Pause and Cancel, grouped under a summary with Pause all. Cancel asks "Remove this download and its unfinished data?" first. A Quick Settings tile pauses or resumes everything.
+- The notification goes away when nothing is downloading; nothing runs in the background then.
+- The global **Wi-Fi only** setting shows "Waiting for Wi-Fi" instead of silently pausing.
+- **Browse tab** with FluxDM's own browser: downloads keep the site's sign-in, tabs and history, file uploads, fullscreen video, and Google sign-in works.
+- **.torrent files and download links** tapped in a file manager, Telegram, Discord or mail open in FluxDM. A torrent's menu has Save .torrent file and Share .torrent.
+- Finished and received files show up in Gallery and music apps, with an Open button.
+- **FluxDM updates itself:** Settings > About > Check for updates (and at launch, at most every 12 hours) finds a new version, shows what's new, and downloads and checks the APK before Android's installer opens.
+- Other apps and web pages can no longer control FluxDM's local download port.
+- The Android download now comes with a SHA-256 checksum and a signature, like the PC setup, and the app checks it before installing an update.
+
+### Your devices together (PC and phone)
+- **Send files and whole folders** between paired devices, with progress, speed and time left on both screens and in an Android notification. Either side can cancel. A broken transfer continues where it stopped, and every file is checked with SHA-256 when it arrives.
+- **Continue on another device now really continues:** a half-done download (a web download whose server allows resuming, or a torrent) moves with its finished parts, and the other device carries on from there. If the server's file changed, it starts over and says why. FluxDM asks before replacing anything.
+- **Add by address:** when a device doesn't show up under Nearby (another subnet, a VPN, Tailscale), type its IP or name. It's remembered, and the list shows whether it's online.
+- **Watching another device's downloads is live:** one connection stays open and only changes are sent, on the PC and the phone. Older FluxDM 3.4.0 devices still work the old way.
+- **Receiving files is safer:** a paired device can't make FluxDM write outside the download folder or overwrite or delete a file that's already there.
+
+### Fixes
+- PC list: switching to Table view widens a narrow list column so you see the size and progress columns instead of a name and a cut-off number.
+- PC Add window: in a narrow window the "Open .torrent…" button no longer squeezes its words into a tiny square, the "N links" chip counts only real links (a stray word on a line no longer inflates it), and a bad link is shown as a warning. The update dialog no longer shows an empty progress bar before you press Update. The status bar drops the long queue summary first so "1 running · 7.99 MB/s" is not cut off.
+- PC window: the side rail no longer cuts "All downloads" down to "All do…" in a narrow window (it collapses to icons and remembers your width), the title bar no longer draws the name over the search box at 640 px, right-click menus taller than the window now sit fully inside it, and the details banner no longer clips its status text in a narrow window. Pause is greyed out for a download that is already paused, and a stopped torrent's Peers tab no longer says the same sentence twice.
+- **Connections come back:** when the line struggled, FluxDM used fewer connections and kept the lower number until you paused and resumed. It now raises them again once the line is calm.
+- Another device's list shows its pictures much sooner.
+- Android: the home-screen icon fills its shape (no black ring).
+- PC Settings → Torrents: the magnet-links text is no longer squeezed beside its button, and it now says when magnet links open in another FluxDM copy (with a "Use this copy" button). Settings cards no longer run off the window edge at narrow widths.
+
 ## 3.4.0 — 2026-11-10
 
 ### Added
