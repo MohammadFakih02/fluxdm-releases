@@ -2,6 +2,10 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.5.6 — 2026-11-16
+
+- **Every category stays visible on laptops.** On a shorter window or a laptop at 125-150% display scale, the side bar's rows share the height the window really has instead of hiding Documents, Music, Images and Other below a scroll with no visible bar. On any window size the rows grow to use the space under the last category, so the bar doesn't end in an empty gap.
+
 ## 3.5.5 — 2026-11-16
 
 - **Devices explains why your other devices can't reach this PC.** When devices are paired, none of them has reached this PC for 10 minutes, and Windows treats your real Wi-Fi or Ethernet network as Public (FluxDM's firewall rules are for Private networks only), Devices shows one quiet note naming the network with a Make it Private button. If FluxDM's firewall rule points at an old copy of the app, the note offers Fix it instead. Each needs one Windows prompt and tells you exactly what happened (cancelled, refused by policy, timed out, or done). Dismiss silences it for that network. Nothing shows when everything works. Fix it no longer removes the rules of another FluxDM copy, and a cellular (mobile broadband) connection is never offered as the network to change.
