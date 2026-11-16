@@ -2,6 +2,10 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.5.7 — 2026-11-17
+
+- **FluxDM comes back after an update on slower PCs.** Pressing Install closed FluxDM and, on some PCs, it never reopened: the new version started while the old one was still pausing its downloads, handed itself over to it and quit. The new version now waits until the old one has really closed. This takes effect from this update on.
+
 ## 3.5.6 — 2026-11-16
 
 - **Every category stays visible on laptops.** On a shorter window or a laptop at 125-150% display scale, the side bar's rows share the height the window really has instead of hiding Documents, Music, Images and Other below a scroll with no visible bar. On any window size the rows grow to use the space under the last category, so the bar doesn't end in an empty gap.
