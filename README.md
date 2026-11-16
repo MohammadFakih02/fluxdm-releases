@@ -86,7 +86,7 @@ current Windows 10 (the setup adds it if it's missing).
 ## FluxDM on Android
 
 The same engine with its own phone screens: Downloads, Browse, Queues and Devices tabs, a download page with
-Open and Share, swipe to pause or delete, and a notification per download.
+Open and Share, swipe to pause or remove, and a notification per download.
 
 - Queues can wait for **Wi-Fi, the charger or a battery level**, and scheduled queues start on time even after a restart.
 - A built-in **browser** keeps sites' sign-ins, so protected downloads just work.
