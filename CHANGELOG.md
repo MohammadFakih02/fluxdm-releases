@@ -2,6 +2,11 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.5.8 — 2026-11-17
+
+- **A finish action for a single download.** Right-click a download, choose When it finishes, and pick Sleep, Hibernate, Shut down, Restart or Exit FluxDM (the phone offers Close FluxDM). It happens once, with the usual countdown you can cancel, and is skipped with a message if other downloads are still running or waiting. If the download fails or is removed, the action is dropped.
+- **Control another device's queues from this PC.** Open a paired device's list and press Queues to edit its queues with the same editor as your own: rename, create or delete them, start or stop them, change how many run at once, the speed limit, retries, the schedule, the finish action, and on a phone the Wi-Fi, charging and battery rules. You can also add its downloads to a queue, take them out, and set a finish action on them. The countdown runs on that device and can be cancelled there; your other paired devices are told when it starts or is skipped. A phone only accepts Do nothing or Close FluxDM, and every action reports the device's real answer. A device on an older version says it needs 3.5.8.
+
 ## 3.5.7 — 2026-11-17
 
 - **FluxDM comes back after an update on slower PCs.** Pressing Install closed FluxDM and, on some PCs, it never reopened: the new version started while the old one was still pausing its downloads, handed itself over to it and quit. The new version now waits until the old one has really closed. This takes effect from this update on.
