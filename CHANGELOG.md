@@ -1,6 +1,46 @@
 # Changelog
 
+- **Choose a destination and finish action from your phone.** Browse a paired device's drives and folders and choose what happens when a download finishes. The finish action is also available on this phone.
+
+
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
+
+## 3.5.9 — 2026-11-17
+
+- **Phone browser: address bar and tabs at the top.** Normal and private tabs now show the address, the tab count and the menu at the top of the screen, with the status bar in the toolbar's colour.
+
+- **Bundled phone video engine integration.** Android gets video quality, M4A audio, playlist selection and keyframe clip controls, plus subtitle and built-in browser cookie settings. CPython, yt-dlp and QuickJS are packaged in the APK; Android MediaMuxer joins streams without ffmpeg. Tested on a real phone: YouTube videos, Shorts and channels/playlists at full quality, audio only (saved as a standard M4A), clips, Instagram reels (with sound), TikTok and public Facebook videos. The Add screen shows the video's thumbnail as a banner on the phone and as the card picture on the PC. The APK grows from about 15 MB to about 30 MB.
+
+- **Phone settings catch up with the PC.** Speed schedule rules can be moved up and down to change which is checked first. Torrents get a random listening port button, the maximum connections per torrent and an IPv4-only switch. Appearance offers the ready-made looks (Full heat, Midnight, Neon, Forest, Mono). Tapping a day in the 30-day statistics chart shows how much was downloaded that day.
+- **Phone: the Browse sheet follows the text size** chosen in Settings.
+
+- **Phone: what the other device answered is shown in full** when sending a link with a folder or finish action (refused folder, older FluxDM).
+- **The phone app can open another paired device's downloads and queues.** A device switcher above the filters shows This phone and each paired device with its online state. Choosing one shows its live list with the usual cards, a Retry note when the link drops, and the allowed actions only (resume, pause, restart, copy link, When it finishes, Move to queue). The Queues tab shows and edits that device's queues. Every action reports the device's real answer; an older device says it needs 3.5.8. Switching back restores your own list, filter, search and scroll.
+
+- **Files received from paired devices appear in your list.** Each received folder has one completed row showing its size and sender.
+
+- **Downloads wait when a Windows drive disappears.** FluxDM pauses downloads using that drive, keeps their partial files and progress, and names the drive and affected folder. It resumes them when the original volume returns. A different disk using the same letter is blocked; if the original disk returns under another letter, FluxDM asks you to move the download or change its folder. Pausing a download yourself cancels automatic resume.
+- **Choose a save folder on a paired device.** The Add window can browse the other device's available drives and folders, including USB drives, and send a chosen destination with the download.
+
+- **Add window lines up when sending to another device.** Choosing another device under Download on pushed rows one column over. Settings that only apply to this PC (Save to, free space, queue, connections, speed limits, Download later) are now hidden for another device, so the window shows only the device, the file name and what to do when done.
+
+- **The real file name always shows under a download's title.** It was hidden when the title matched the file name without its extension (Deck over Deck.apk), so some downloads showed only "Deck" and others showed the full file name.
+
+- **Another device's queues open from the side bar.** The extra Queues chip next to the device chips looked like a fourth device and is gone. While you view another device's list, the side bar's Queues reads "Queues · <device>" and opens that device's queues; back on This PC it opens your own. The side bar shows it as Queues with the device name on a small line under it (a dot on the icon when the side bar is collapsed).
+
+- **A download's finish action really runs.** Restart, Shut down, Sleep and the others set on a single download were always skipped when it finished, because FluxDM counted that same download as "still running". The countdown now starts as intended, and the action is still skipped when other downloads are running or waiting.
+
+- **A device that closes turns grey within about 15 seconds.** Its dot above the list stayed green for up to 2 minutes after FluxDM closed there (for example while it was installing an update).
+
+- **Pick a finish action while adding.** The Add window has "When done" next to Open it when finished: Do nothing, Sleep, Hibernate, Shut down, Restart or Exit FluxDM (a phone offers Close FluxDM). It works for this device and when sending to another device, runs once with the usual 60-second countdown on the device that downloads it, and the result says whether it was set there.
+
+- **Countdown notification reads cleanly:** "FluxDM will exit in 55 seconds" instead of "55  s" with a wide gap.
+
+- **Programs from GitHub get their picture in seconds.** A download from a GitHub release now takes its project's own logo and banner first instead of searching game stores and Wikipedia for ~20 s; names that look like games still try Steam first.
+
+- **Notifications close when you click them.** A notification could stay on screen and ignore clicks and its x for up to 25 seconds when a new one arrived at the same moment. Clicking the card or its x now always closes it.
+
+- **Games holds games.** PS5 homebrew (title IDs PPSA99xxx, like vkQuake or Doom ports), program installers a Wikipedia search tied to an article (YouTube Music), and generic names matched to a Steam game (Payload.zip) no longer land in Games; wrong Steam matches from generic names are looked up again.
 
 ## 3.5.8 — 2026-11-17
 

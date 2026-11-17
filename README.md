@@ -44,7 +44,7 @@ current Windows 10 (the setup adds it if it's missing).
 
 ### Videos and audio
 - YouTube and 1000+ other sites, up to 4K, audio-only MP3/M4A, or whole playlists.
-- yt-dlp and FFmpeg are fetched from their official releases the first time you need them.
+- On Windows, yt-dlp and FFmpeg are fetched from their official releases the first time you need them. Android packages CPython, yt-dlp and QuickJS inside the APK and uses Android MediaMuxer; see [Android engine build and validation notes](tools/android-engine/README.md).
 
 ### Built-in torrent client
 - Magnet links and `.torrent` files, with TCP + µTP, DHT, UPnP and fast resume.
@@ -125,8 +125,8 @@ What's new in each version: [CHANGELOG.md](CHANGELOG.md). Found a bug or have an
 ## Credits
 
 [librqbit](https://github.com/ikatson/rqbit) (Apache-2.0), [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-(Unlicense, downloaded at runtime), [FFmpeg](https://ffmpeg.org) builds by gyan.dev (GPL, downloaded at
-runtime), [Tauri](https://tauri.app) (MIT/Apache-2.0).
+(Unlicense, downloaded on Windows and bundled on Android), [FFmpeg](https://ffmpeg.org) builds by gyan.dev (GPL, downloaded on
+Windows only), [Tauri](https://tauri.app) (MIT/Apache-2.0). Android also bundles CPython (PSF) and QuickJS (MIT); see [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## License
 
