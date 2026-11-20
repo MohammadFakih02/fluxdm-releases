@@ -48,6 +48,7 @@ current Windows 10 (the setup adds it if it's missing).
 
 ### Built-in torrent client
 - Magnet links and `.torrent` files, with TCP + µTP, DHT, UPnP and fast resume.
+- Handles huge torrents and magnet links with thousands of files: a Files tab with folders, **search, Select all / none**, and smooth scrolling.
 - Pick the files you want, **download in order** to watch a video while it downloads, and set separate upload limits
   for downloading and seeding, with a ratio or time target.
 - Recheck, reannounce, add trackers, move data, export the `.torrent` or copy the magnet link.
@@ -58,19 +59,24 @@ current Windows 10 (the setup adds it if it's missing).
 - **When a queue finishes:** exit, sleep, hibernate, shut down or restart, with a countdown you can cancel.
 - Categories, sorting, grouping, a table view and **statistics** of what you downloaded.
 
+### Get files out
+- **Copy files** (right-click or Ctrl+C) and paste them in Explorer, or **drag** finished downloads onto Explorer or the desktop. **Show in folder** scrolls to the file.
+
 ### Looks good
 - **Game and app artwork:** downloads get their real banner and icon from Steam, the Microsoft Store, PlayStation,
-  GOG and more, and the window takes on the colours of what you're downloading.
+  GOG and more, including covers for Switch, Wii, GameCube, Wii U, DS, 3DS, PS1-PS3, PSP and retro consoles, and the window takes on the colours of what you're downloading.
+- **Arabic** on the PC too, with a right-to-left layout (**Settings → Language**).
 - Five complete looks, background colours, glass styles and app icon colours in **Settings → Appearance**.
 
 ### Catches downloads for you
-- The **browser extension** for Firefox (signed by Mozilla, one-click install) and Chrome, Edge, Brave, Opera and Vivaldi.
+- The **browser extension** for Waterfox and Firefox (signed by Mozilla, one-click install from **Settings → Browser extension**) and Chrome, Edge, Brave, Opera and Vivaldi. A newer, not yet signed version can be installed by hand in browsers with signature checks turned off (`xpinstall.signatures.required` set to false); Settings shows both versions.
+- **Fresh links:** when a link expires, open the download page and click Download again, and FluxDM resumes with the new link. Downloading an unfinished file again asks before adding it twice. Sites that make the download themselves stay in the browser.
 - Copy a link and FluxDM offers to download it. Drag links, `.txt` lists or `.torrent` files onto the window.
 - FluxDM can be your `magnet:` link handler.
 
 ### Your PC and phone, together
 - **Devices:** FluxDM finds your other PCs and your phone on your home network. Pair once, like Bluetooth.
-- **See and control** another device's downloads live, right in your own list.
+- **See and control** another device's downloads live, right in your own list. Remove them with a confirmation, or move them to a folder, USB drive or SD card on that device (both devices need 3.6.0 or newer). Choose which files of another device's torrent to download, and set its speed limits and banners.
 - **Download on another device:** pick it under "Download on" in the Add window.
 - **Send files and folders** between devices, with progress on both screens; a broken transfer resumes.
 - **Discord notifications** when downloads finish or fail.

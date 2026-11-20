@@ -1,9 +1,53 @@
 # Changelog
 
-- **Choose a destination and finish action from your phone.** Browse a paired device's drives and folders and choose what happens when a download finishes. The finish action is also available on this phone.
-
-
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
+
+## 3.6.0 — 2026-11-20
+
+### Torrents
+- **Huge torrents work.** Torrents with a very large number of pieces no longer lose almost every peer or stop after their first pieces, and FluxDM no longer sends each new peer a list of every piece while it has only a few, which saves a lot of upload on slow lines.
+- **Magnet links with thousands of files** no longer stay on "getting the torrent's info from peers" forever. The file list is fetched from many peers at once, a peer that drops carries on where it stopped, and peers that lie, stay silent or repeat themselves can't stall it.
+- **A Files tab for thousands of files.** Folders start closed so the list stays smooth, and there are Select all, Select none, folder ticks and a "Find a file or folder" search that change many files in one step. A torrent too big for the drive tells you to choose fewer files, and Resume opens the Files tab.
+- **Better tracker timing.** Torrents ask trackers for peers as often as the tracker asks, wait longer after each failure (up to an hour) like qBittorrent, and try a UDP tracker's other addresses before counting a failure. A tracker that never answers no longer stalls for good.
+- **Choose the files of a paired device's torrent.** From the phone, pick which files of a PC torrent to download (All, None, folders, files, priority), and from the PC do the same for a phone torrent. A device on an older FluxDM tells you to update it.
+- **Safer with bad peers.** One peer can no longer make FluxDM use a lot of memory, or get honest peers banned by sending a broken file list. Changing a torrent's files while it is being checked or moved now says so at once.
+
+### Getting files out
+- **Copy files and drag to Explorer.** Right-click > Copy files (or Ctrl+C) puts finished downloads on the clipboard to paste in Explorer, and you can drag them onto Explorer or the desktop. Unfinished, missing or busy ones are skipped and named, and a copy Windows refuses says so.
+- **Show in folder scrolls to the file**, even when that folder was already open.
+
+### Fresh links from the browser
+- **Refresh link can open the download page.** Click Download on that page again and FluxDM takes the new link for the same file and resumes, keeping what it already has.
+- **"Already in FluxDM" question.** Clicking Download in the browser on an unfinished download asks whether to use the new link and resume, instead of adding it twice. A file of unknown size starts over rather than continuing onto old bytes, and the question says so. It also works when the main window shows another device's list.
+- **File hosts with a download button stay in the browser.** Pages that make the download themselves (Free download, captcha, countdown) are left to the browser instead of failing with "returned a web page".
+
+### Game art for all consoles
+- Games for Switch, Wii, GameCube, Wii U, DS, 3DS, PS3 and PSP get their real cover by game ID or serial, PS1 and PS2 games by serial, and NES, SNES, N64, Game Boy, GBA, Sega and other retro files get box art by their official name. Only exact matches are used, a picture you chose is never replaced, and downloads that found nothing retry once. A download named by a serial shows the game's name once its cover is found.
+
+### Arabic on the PC
+- **New Language setting** (System, English, Arabic). Arabic mirrors the main, Add and notification windows right to left and translates labels, menus, dialogs and notifications, while download names, paths and links stay as they are. Settings pages show their own icons, and Settings can be saved while a speed limit is unlimited.
+
+### Easier to use
+- **Simpler right-click menu.** Grouped by task and showing only what fits the download. Nothing was removed.
+- **Tidier Settings.** Language has its own page after Appearance, Updates is the last page, and Appearance packs its cards in two columns.
+- **The list scrolls to a new download** when you add one (a large batch keeps your place).
+
+### Browser extension 1.5.1
+- **New look** matching the app, and private-window downloads keep their cookies in memory only.
+- **Clear messages** when FluxDM isn't reachable (with the port), needs approval, leaves a download to the browser, or can't download a link.
+- "Let my next download go to the browser" now works in Waterfox too, and the clipboard list is now "File types to catch from the clipboard".
+- **Installed by hand for now.** Waterfox and Firefox get the signed version from Settings > Browser extension, which shows the signed and the newest version. While the newest isn't signed yet, a second button installs it unsigned (for browsers with signature checks turned off).
+
+### Your other devices
+- **Remove and move downloads on your other devices.** From a PC or phone, open a paired device's list to remove downloads or move them to another folder there, including a USB drive or SD card. Remove asks first and keeps finished files unless you choose to delete them. Moves are checked carefully (protected folders, shared folders, network shares) and a mixed selection reports what was moved, skipped or failed by name. The receiving device needs FluxDM 3.6.0 or newer.
+- **Speed limits and banners on a paired device's list.** Set a download's speed limits and its banner (reposition, choose an image, find one again). The phone can set speed limits and find a banner again for another device too.
+- **Download later works for another device.** Download later and the Queue picker work when the download goes to a paired device, and sends to an offline device are kept, even after a restart, and delivered once it comes online. An older FluxDM is refused clearly.
+- **Choose a destination and finish action from your phone** on a paired device.
+- **Reposition a download's picture** from More > Banner, and it follows the desktop, phone and linked-device lists.
+
+### Phone
+- A torrent's Files section is a folder tree with closed folders, a search box and All / None, so torrents with thousands of files stay smooth.
+- The phone gets the torrent engine fixes above, and its messages for other devices are in Arabic too.
 
 ## 3.5.9 — 2026-11-17
 
