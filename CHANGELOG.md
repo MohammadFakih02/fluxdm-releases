@@ -2,6 +2,25 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.6.1 — 2026-11-21
+
+### Phone
+- **One way to switch devices.** The row of device buttons above the filters is gone; the device name at the top switches, and its menu shows a green dot next to each online device.
+- **Speed limits for the device you're viewing.** While the phone shows a PC, Speed limits changes that PC's limits (it changed only the phone's before), and the bar at the bottom shows the PC's own limit. The PC needs this version too.
+- **Queue order from the phone works.** The up arrows (and dragging) on another device's queue now move the download; before, the phone said "Queue updated" and nothing moved. The other device needs this version too.
+- **"Lowered to 1 for now" goes away.** A download's details no longer keep saying its connections were lowered after it is back on all of them.
+- **Notifications after a failed download.** A download that failed no longer keeps its progress or "waiting" notification on the phone until you delete it.
+- **Smoother scrolling.** The download list no longer jumps around by itself after a fast scroll.
+- **Instagram photo posts** say plainly that only videos are downloaded from them, instead of "There is no video in this post".
+
+### Other devices from the PC
+- **Speed limits:** while the PC shows another device, the Download limit and Upload limit boxes in the status bar change that device's limits; before, the choice snapped back and could even change this PC's own limit to the other device's.
+- **Queue order:** the queue window for another device now has the up and down arrows (and dragging) to change the order.
+
+### Browser
+- A download sent from the browser is no longer downloaded twice (by the browser and FluxDM) when the site is slow to answer.
+- Settings → Browser extension no longer shows two install buttons for the same unsigned extension in builds without a signed one.
+
 ## 3.6.0 — 2026-11-20
 
 ### Torrents
