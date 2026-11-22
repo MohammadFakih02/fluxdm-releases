@@ -2,6 +2,25 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.7.1 — 2026-11-22
+
+- Switching downloads is smoother: the picture behind the window cross-fades and the colours fade more slowly.
+- The Add URL button lines up with the sidebar rows below it.
+- **Settings sections fill the sidebar.** The section rows grow to use the available height, stay compact in short windows, and keep their icons and labels left-aligned.
+- The art strip on the selected list card frames near the top for every picture, not only ones FluxDM had analysed.
+- **Artwork stays put while dragging.** Download pictures no longer start native image drags or trigger the link drop overlay inside FluxDM.
+- **Faces stay in wide banners.** When you haven't positioned a wide banner yourself, FluxDM frames its upper part, so heads are no longer cut off (e.g. Iron Man).
+- **Faces stay in download cards.** The narrow artwork strip frames its upper part automatically, including portrait pictures.
+- **Better poster framing.** Portrait posters now show more of the upper part in icons and wide artwork, helping keep faces in view.
+
+- **Icons for known programs.** VLC, Blender and Debian downloads can now show their logos alongside their banners.
+
+- **Clearer torrent file status.** The Files tab now shows the selected file count and remaining download size in easier-to-read text, with room below the last row and total.
+- **Reposition icon.** Right-click a download, Look, Icon, Reposition icon: drag the picture (or use the arrow keys) to choose which part shows in its square icon, for example to show a face the automatic crop cut off. Reset goes back to automatic; choosing a new icon image starts centred again. Works for downloads on your other devices too.
+- **A total under the file list.** A torrent's Files tab ends with a Total row (the ticked files, their size, progress and what is left, the amount left in the accent colour) that stays at the bottom while the list scrolls.
+- **Custom starts from what you had.** Switching to Custom from Simple starts with every part off, and from Full with every part on, instead of always turning everything on.
+- **No more colour flicker.** When the colours follow the selected download's art, they now fade to the new colour instead of jumping, and only once you stop on a download, so clicking or arrowing through the list no longer flashes the whole window.
+
 ## 3.7.0 — 2026-11-22
 
 ### Simple, Full or Custom interface
