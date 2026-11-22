@@ -2,6 +2,25 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.7.0 — 2026-11-22
+
+### Simple, Full or Custom interface
+- **Simple** shows only what most people need: All, Downloading and Finished; six categories (Games and AI Models count under Programs, Compressed and Torrents under Other); Resume, Pause and Remove; no Queues or Stats buttons, grouping, network details or speed-limit boxes; a details pane with just progress, speed, time left and where the file goes (Files for torrents); and a short right-click menu with everything else under More.
+- **Full** is FluxDM as before, and stays the setting for everyone who already uses it. **Custom** lets you tick each of the eight parts on or off.
+- Switch in Settings, Appearance, Interface, or from the "..." menu. New installs choose Simple or Full on first start. Nothing is turned off by hiding it, and a download with a problem still shows Health and its fix buttons in every mode.
+
+### Pictures
+- **Repacks with short names get their banner and icon.** A name like "Metal Gear Solid V - TPP [FitGirl Repack]" now finds the game: short capital abbreviations match the title they spell ("TPP" = The Phantom Pain, "DC" = Director's Cut), and a torrent that still finds nothing tries the full name from its magnet link.
+- Names cut off in the middle of a bracket (common in magnet links) no longer search with the leftover piece.
+- Downloads that found no picture before and that these changes can help are searched once more by themselves.
+
+### Look
+- **Search moved to the download list.** The search box is now at the top of the list, above the action buttons, instead of in the title bar. Ctrl+F still jumps to it.
+
+### Download health
+- **The Health window uses its full width.** A single problem no longer sits squeezed in the left half, a long name ends in "…" instead of pushing the status out of its card, and the status is shown as a small label.
+- **The right buttons after a restart.** A download paused with an error kept only "Retry now" once FluxDM was restarted; it now offers the fixes for that error again, such as Refresh link and Add a mirror for an expired link or a web page instead of the file.
+
 ## 3.6.1 — 2026-11-21
 
 ### Phone
