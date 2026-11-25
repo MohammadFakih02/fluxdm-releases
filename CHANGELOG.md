@@ -2,6 +2,102 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.8.0 — 2026-11-25
+
+**In short**
+
+- **The window keeps answering** while a torrent is checked or a drive is busy.
+- **Your files are safer:** downloads are verified after saving, damaged blocks are fetched again, and deleting, moving or adding a torrent touches only its own files.
+- **Refreshing a link** tests the new link first, compares what is already saved, and never restarts a download by itself.
+- **Save diagnostics** makes one clear zip for a bug report, with private names and links hidden. Nothing is sent by itself.
+- **Notifications** stay out of your games and can be turned down.
+- **Devices:** orders, queues and permissions between your PC, laptop and phone are more reliable.
+
+**Everything**
+
+- Arabic and layout polish: the Add window's "When done" list no longer clips its last letter, the video options and placeholders are translated, a paused phone card keeps its percent in view, English done dates stay on one line, long actions on a download's page get their own row clear of the gesture bar, and a few phone messages that were still English are translated.
+- Two downloads with the same name never share a partial file, also when their folder is written differently (slashes, capital letters).
+- **Adding a torrent never takes a file of yours.** A file already in the folder with the name of a torrent file you left out used to disappear into FluxDM's hidden store.
+- The Refresh link dialog says why a new link was refused and that the old one was kept. Arabic phone details show sizes in order.
+- Refresh link checks the new address with its intended headers before stopping the current download or replacing its link. A rejected link keeps the old link and saved data; a newer refresh, Remove or Move wins over an older check.
+- Refresh link checks the saved file size, server checksum and comparable ETag/Last-Modified before reusing progress. Changing a signed URL's query no longer bypasses its saved validator; another site's ETag is kept separate.
+- Before resuming a refreshed link, FluxDM compares bounded samples of saved bytes with the new server. Different bytes keep the partial file and old link. A server that refuses sample ranges is reported as unverified.
+- A refreshed link is announced as resumed only after new download bytes arrive. Saving the link alone no longer claims that the download has resumed.
+- Pasting a link on another site drops the previous cookies and headers and tells you. Empty browser captures cannot carry the previous site's credentials to the new site. Same-origin pasted links keep their headers, including during the dialog's check.
+- Refreshing a finished download or a video only swaps the link, as before. A refused new link now says why: sign-in needed, expired, deleted, or the site's limit or quota (with the wait it asked for), in English and Arabic on PC and phone.
+- The browser's new link is matched by the file's id on known sites (Pixeldrain, Gofile, MediaFire, GitHub, Hugging Face, Drive, Dropbox, Archive.org and more) or by its download page; a matching size alone never replaces a link without asking. A checksum the new site publishes is kept for the final check.
+- **Refreshing a link never restarts a download by itself.** When the new link does not say the file size, FluxDM asks first instead of deleting what is already downloaded, and the button says so.
+- **Deleting or moving a torrent touches only its own files.** Other files you keep in its folder stay where they are. When the torrent's info is missing, FluxDM refuses instead of guessing. Files you left out of a torrent are not touched.
+- A paired device needs the delete permission to start an unfinished torrent over on another drive. A cancelled shutdown or restart can never come back after FluxDM starts again.
+- Removing a playlist never deletes its whole folder when its own files are unknown or replaced. Remove and Restart no longer wait for ever for an archive check on a dead drive.
+- Removing or restarting a video whose file was replaced by another download never deletes that newer file.
+- **Force recheck reads the whole torrent.** A finished torrent that was not being shared could be reported as fine after reading only a few pieces.
+- A crash is noticed at the next start even if another program still watches the ended process.
+- Arabic phone: the size on the Add page and the reason of a check cut short read correctly.
+- **Restart from zero** moved into the Advanced submenu (PC: More > Advanced), away from everyday actions.
+- Diagnostics keep version numbers, setting names and plain words readable while private names stay hidden.
+- The PC Add window no longer shifts File name beside its label (it was squeezed into the narrow label column with Queue next to it) when the drive-warning line is empty.
+- Restart on a download that another download replaced now warns, when the file-exists setting is Overwrite, that the other download's file at that place will be replaced. The restart text uses the words of each app (phone: Keep both / Replace, PC: Add a number / Overwrite), and a torrent with one file no longer says "up to 1 files".
+- Diagnostics: info.txt, the event log and the saved message say Android, System WebView, "Phone uptime" and phone names on Android (no Windows, WebView2, administrator or drive-letter wording); Windows 11 is no longer reported as Windows 10. The saved message is Arabic in Arabic on the PC and the phone.
+- Retries, DNS and network waits appear as warnings in the event log (at most one per 10 s, the rest stay info and are counted), so problems.txt shows them; the final failure of a download was already an error.
+- Phone Settings shows the quiet "FluxDM didn't close normally last time" note under Save diagnostics after a crash; saving clears it.
+- The phone Settings note about closing FluxDM from recent apps now says downloads stay paused (they only start by themselves again when a queue is set to start when FluxDM opens).
+- Phone, small screens and Arabic: a paused download's percent wraps instead of being cut, the Add window's size line keeps "300 KB" in order, a long path in the details breaks at / and not inside a name, tab labels keep a margin, and "Accept this file anyway" wraps.
+- Android: a torrent that is only sharing shows "Sharing" (and its upload speed) in the notification instead of "100.0%". A torrent's average speed no longer counts the time it spent sharing.
+- A long list uses less processor time while nothing is happening.
+- Restart confirmations now say that an already finished copy stays until the new one is done, then the file-exists setting decides (Keep both adds a number).
+- Phone download details show **Accept this file anyway** beside Retry for a server checksum mismatch. Arabic now covers checksum, connection, disk and save errors on both layouts.
+- Arabic paths, rates and link placeholders keep their reading order. The PC Add window fits its Arabic controls, and sidebar labels can wrap.
+- Phone lists wrap finished dates and problem reasons, give navigation labels breathing room and leave space below the last row for the Add button. The Add page follows the keyboard's visible area.
+- Short single-word file names need an exact game title and separate supporting evidence before receiving game artwork. Add-by-address failures show the address once.
+- Android no longer treats a finished HTTP worker as pending work; idle foreground notifications stop, while downloads, seeds and device transfers stay active. Overwriting a file keeps its old download row and marks it as replaced. Replaced rows are not restarted by bulk actions.
+- Restart now says what it really deletes: torrents delete their files (even ones that were there before), videos delete their saved files, web downloads keep a finished copy. A check cut short by closing FluxDM comes back Paused with that reason.
+- When a device refuses a handover that would replace its download (permission off), the sender now says why instead of "did not arrive".
+- **Android: downloads that stopped at "Paused" when finishing.** Phone storage that refuses a safe rename ("Invalid argument") no longer keeps a finished download from being put in place. A download paused by a problem now says which, and never shows 100% before it is done.
+- **Save diagnostics.** Settings can save a zip of recent problems, crash reports, settings and download/device summaries for you to send by hand. Links and paths are shortened and known private names and secrets are removed. Copy summary includes recorded crashes. Detailed log is available on PC and phone, turns off after 24 hours, and stays off after it expires until you explicitly enable it again.
+- Diagnostics keep old file, queue and device names private after renaming or deleting them, handle equivalent Unicode spellings, and stay bounded when a download-list or device-link lock is busy. Very large parts are shortened or omitted with an explanation to keep the zip within 8 MB.
+- **Notifications stay out of your games.** New setting "Show notifications above full-screen games and apps" (off by default, also for existing installs). While a game or full-screen app is in front, FluxDM's notifications wait and never take focus from it; when it ends they appear as one summary ("While you were in full screen: 3 finished, 1 failed"), or as themselves when there is only one. Pairing and browser-approval windows wait too. The shutdown / restart / sleep countdown always shows.
+- **More control over notifications.** Notifications: All, Important only, or Off; switches for finished, failed or needs attention, devices, torrents, and updates and tips. "Stay on screen": Short (3 s), Normal, Long (10 s) or Until closed; failures stay 1.5 times longer, the time stops while the pointer is over a notification, and it fades quickly (not at all with reduced motion). "Show a test notification" says if it is being held. Anyone who had notifications off keeps failures quiet.
+- Interrupted device adds recover on retry or restart. Waiting sends reach older devices once; a lost answer never sends them twice. Handovers carry block checksums and recover from a failed save. Add selects the device being viewed and its requested queue when available.
+- Device delivery journals keep the latest 500 answers per device and release unused delivery locks.
+- **Hugging Face models get a picture.** A model file from huggingface.co shows the picture its model card names (wide pictures as the banner, square ones as the icon), otherwise the publishing organisation's logo. A personal account's photo is not used.
+- **Dark logos of GitHub projects are readable.** A project's own README logo that is black on a see-through background (PS5 Upload) is shown on a light plate: a wide one as the banner, its symbol as the icon. Badges, screenshots and other pictures are judged as before. Items that found nothing are looked up once more.
+- **Accept a file anyway.** When the checksum the server published does not match, the file is kept and you can choose "Accept this file anyway" (right-click menu, details, and the phone item sheet). It asks first and says the file does not match. It only covers that exact server checksum and those exact bytes, never your own hash or the drive checks, and the finished download keeps a note about it. Restarting clears it.
+- **Archive check** can be cancelled from the window, is stopped when the download is removed or FluxDM exits, never stores a result for a file that changed or moved, and has a row and action on the phone. Its messages are translated, Arabic included.
+- The drive warning also shows in Settings beside the download folder.
+- **The window no longer shows "Not responding" while the drive is busy.** Everything the page asks for (details, saving, checking files, opening folders, torrent engine calls) now runs in the background; the window only draws. Actions that must keep their order (start/pause, edits, limits, queues, settings) still apply in the order you made them. Changes are saved a moment later by a background saver, and Exit still saves everything first: if the drive is slow it says so and waits, and if saving fails it stays open (choose Exit again to close anyway).
+- A watcher writes one line to the log when the window stalls for over 3 seconds and one when it recovers (no file names or links), so a freeze can be traced.
+- Lists and status that refresh on a timer never have more than one request waiting.
+- **The window no longer freezes while a finished torrent is checked.** Checking the saved data of a torrent could leave the whole app "Not responding" until it ended. The list, details and limits now answer from the last known state while the engine is busy, and checks (torrent verification, hash and block checks, archive tests) take turns on a drive (for up to a minute). Cancelling a check also works while it waits for its turn.
+- **Verified saving.** Every downloaded block is checksummed as it arrives, and when a download is finished the file is read back from the drive (not the cache) and compared. Damage from the drive, its cable, the file system or memory is found and only the damaged blocks are fetched again (3 tries, then the download stops with an error naming the drive and keeps the partial file). After a restart the saved blocks are checked too. The details say "Checked after saving"; fetching blocks again also shows a notice. New setting "Verify after saving" (on by default).
+- A checksum the server publishes for the whole file (Repr-Digest, Digest, x-goog-hash, Content-MD5 on a full answer, x-amz-checksum-sha256) is checked after saving too; your own hash always wins. A mismatch is an error with Retry, never a completed download.
+- **Torrents are read back before they finish.** Pieces saved during a download are read from the drive again (bypassing the Windows cache) and checked before the files are published; damaged ones are downloaded again, up to 3 times, then the torrent stops with an error naming the drive instead of finishing with a corrupt file.
+- **After a crash or power loss every torrent piece is re-checked**, not a sample, so damaged pieces in the middle of a download are found. A normal restart still resumes instantly.
+- **Drive warning.** FluxDM reads the Windows event log (read only) and warns, once a day per drive, when Windows reported disk errors on a drive it saves to, in the Add window's folder row and the Health tab.
+- Remote orders retry safely without repeating changes, report which downloads were skipped and why, and support queue edits, torrent checks, tags, connections and seeding limits when both devices are updated.
+- Downloads can show a background made from their artwork when no banner is available, and FluxDM and Deck installers use their own artwork.
+- Installers avoid unrelated game pictures, GitHub homebrew files can show their project's art, and supported Nexus mods show their game's art while keeping the mod name.
+- **Speed limits apply at once.** Raising or removing a limit wakes downloads that were waiting on the old one, a torrent no longer runs over its limit while limits are shared out, and a video follows a changed limit after about 5 seconds.
+- **The main upload limit covers everything.** It caps downloading and seeding torrents together; the seeding limit works within it. "No upload" stops seeding too.
+- A picture search cut off by a dropped connection is tried again soon instead of a week later.
+- **A speed limit goes to the download you set it for.** Clicking another download while in the limit box put the limit on that one; leaving a limit box no longer brings back an old value.
+- A changed limit no longer interrupts a video that is being merged.
+- **Shutting down when finished is reliable.** FluxDM waits for other downloads instead of skipping it, runs the 60-second countdown itself even when its window is closed, then Windows closes every app after 2 more minutes (save your work or press Cancel). Your other devices are told what really happened and can cancel it. Closing the dialog only hides it.
+- **Moving a download to another device is safe when the connection drops.** The other device's copy is replaced only once everything arrived, the download never runs on both, and FluxDM checks whether it arrived instead of guessing. Waiting sends stay in order, and a device that doesn't answer no longer holds up the others.
+- **Names with special letters are read correctly** ("Ghost of Yōtei"), and archives named by a PlayStation ID get the game's name and art; its DLC says so.
+- The Add window's space warning is for the device and folder chosen.
+- **Archives are tested after downloading** (zip by FluxDM; rar and 7z with an installed 7-Zip or WinRAR): damaged files are named, and a package that was cut short is noticed. Right-click > Check archive does it any time.
+- **Permissions per device** (Devices > Permissions): whether it may delete or replace files here, and shut down, restart, sleep or close FluxDM. Devices already paired keep both; a newly paired one starts without them.
+- Titles of PS5 tools no longer end in "elf".
+- **Phone:** downloads and transfers started from another device keep running while the app is in the background, a pairing request shows a notification, and "Send files" sends only what you picked.
+- Files sent through Discord no longer show Discord's own banner. Homebrew packages from GitHub show their project's art.
+- **Orders to your other devices are reliable.** An order is done once even when its answer is lost or it is tapped twice, a dropped connection is retried for 20 seconds, and the message says what really happened ("3 paused on Laptop. 1 skipped: X (finishing)").
+- **Queues of another device.** Edit, start and stop act on the device shown; only what you changed is sent, so a change made there isn't undone.
+- **More from another device:** seeding limit, downloads at once, connections, download in order, tags, recheck and reannounce; the limit really in effect is shown while a schedule runs.
+- Saving Settings no longer puts back a speed limit changed elsewhere while the window was open.
+- **Right game for a wrong PlayStation ID.** When a file plainly names a different game than its ID (one mistyped digit), the file's name is used.
+- Downloads whose site hides the name ("[DLPSGAME.COM]-G_04865_...") show the right game and its art.
+
 ## 3.7.1 — 2026-11-22
 
 - Switching downloads is smoother: the picture behind the window cross-fades and the colours fade more slowly.
