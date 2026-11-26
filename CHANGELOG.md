@@ -2,6 +2,15 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.8.1 — 2026-11-25
+
+- Phone: the bottom bar keeps its labels clear of rounded screen corners.
+- Phone: the Queues page and failed downloads no longer have a large empty gap in their cards.
+- Phone: the + button works while you look at another device's downloads; the Add page opens with that device already chosen, also while it is offline.
+- Phone: **Stay reachable in the background** (Devices page, off by default) lets your paired devices send to and control the phone while FluxDM is not on screen. On Tecno, Infinix and itel phones a row below it opens the page where No Restrictions stops the phone from freezing FluxDM; on Samsung phones two rows open the battery pages to change.
+- Phone: a paused download's page shows one percent instead of two different ones, and in Arabic a failed card's size sits under its text.
+- **Refresh link** and **Add backup link** now work on another device's downloads. You type or paste the link here; the other device checks it and makes the change. If the new file is a different size you are asked here first. An older FluxDM on the other device says it needs updating. A slow answer says the result is unknown instead of failed.
+
 ## 3.8.0 — 2026-11-25
 
 **In short**
