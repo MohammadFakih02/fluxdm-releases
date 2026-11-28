@@ -2,6 +2,124 @@
 
 What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 
+## 3.8.2 — 2026-11-27
+- Torrent details: selected and hovered rows in the Trackers, Peers and Files tables are visible again (they were selected but looked unselected).
+- Split into parts: Refresh link... on any part now puts a fresh link, or a link to the same file on another site, on every unfinished part at once. FluxDM first checks it is the same file (same size, byte ranges, and sample bytes the parts already saved match) and says exactly what happened, for example "New link put on 3 parts (1 resumed)", or why it refused. Add backup link... on a part checks each link the same way and adds only the ones that match. A part stopped by an expired or changed link now says to use Refresh link... and offers it. The same works from a paired device: Refresh link on one part covers the group.
+- Build: the merged torrent peer tests compile again (no user-visible change).
+- Torrent details: the Peers card's seeds/peers line uses the same live snapshot as the Peers tab, so the two no longer disagree for a moment.
+- PC torrent Peers tab: right-click a peer (or press the menu key / Shift+F10 on a focused row) for Copy address and Add peer. Add peer also has a button beside the peers summary, takes one or more IP:port or [IPv6]:port lines, refuses bad lines with the reason, and says plainly what happened: how many were handed to the torrent engine (it does not claim they connected), or "Start the torrent first". It is disabled for another device's torrents ("Only for torrents on this device"); Copy address works there too. Adding peers restarts the torrent's engine briefly, as adding a tracker does. The new text is in Arabic too.
+- Add window: the split line's free space and its "not enough space" warning now follow a folder chosen with Browse... or picked by file type (it kept the first drive's numbers).
+- Android build: opening a finished file compiles again (the PC-only error check had no phone counterpart).
+- PC: the device switch above the list wraps onto a second line instead of clipping the last device behind a hidden scrollbar.
+- PC torrent Files tab: the totals (files picked of all, size, progress, what is left or Done) are a plain line above the file list instead of a pinned bottom row that the file rows showed through; the line stays in view while the list scrolls.
+- PC torrent Files tab: the totals (files picked of all, size, progress, what is left or Done) are a plain line above the file list instead of a pinned bottom row that the file rows showed through; the line stays in view while the list scrolls.
+- PC details: the speed graph now has a time axis (60s, 30s, now), speed labels on the top and middle lines (still at least 1 KB/s), lines in the same colours as the download/upload legend, and a quiet "Waiting for speed data" instead of a lone label until there are two samples. In Arabic the time runs right to left.
+- PC torrent Peers tab: each peer shows its client with the address under it, how much of the torrent it has (percent, a "Seed" badge, or "?" while that is unknown instead of an empty 0% bar), the connection type (TCP, uTP, Proxy) and what you downloaded from and uploaded to it. Idle peers show a dash instead of a bare 0, the rows no longer reshuffle every second, the "(N seeds)" count covers every peer when more than 200 are connected (with a "Showing 200 of N peers" note), the previous torrent's peers no longer linger after you pick another download, and the text for a queued, checking or failed torrent says so instead of "not running". Column widths dragged in the overview are remembered (Arabic included). The header bar's end no longer looks cut short, and in Arabic its rounded corners are on the correct sides.
+
+- Phone remote login now sends a one-use HMAC challenge response and keeps only a 15-minute session token in session storage. Previously saved PINs are removed. Legacy x-pin clients remain supported for one release with a deprecation log; existing PIN lockouts also cover challenge login.
+- Video downloads now verify yt-dlp's signed checksum list against a built-in signing key and check the executable before each run. Settings updates use the same verification instead of yt-dlp self-update. An old or damaged copy without valid signed checksums is replaced by a verified download; if that fails, it is refused with an English/Arabic message.
+- The Android Quick Settings tile resumes only downloads it paused, including after an app restart.
+- Pairing between updated devices now commits to hidden keys before revealing them, preventing adaptive pairing-code searches. Older versions still pair, with a visible security warning on the updated device (English and Arabic).
+- New: Split into parts (engine and Join). A big file can be downloaded as 2 to 99 separate parts (`name.part2of4`), each an ordinary resumable download of its own byte range, so a drive smaller than the file can fetch it part by part; the parts are moved to another PC and joined there into the one file. A server without byte-range support is refused with the reason, and a part whose server file changed (size, ETag or Last-Modified) stops with a clear error instead of mixing two versions.
+
+- New: Split into parts on the PC. In the Add window, a "Split into parts" control (Off, 2, 3, 4 or a number you type) shows each part's size and the free space of the chosen drive, lets you tick which parts start now, and refuses with the reason when the server has no byte-range support or does not say the file's size. The parts sit together in the list, each tagged "Part 2 of 4", with "Download only this part" in the right-click menu (it pauses the other parts). "Join parts..." in the More actions menu takes the part files or their folder, shows the detected file, the parts found and missing, the joined size, the free space and a "delete parts after joining" box, then reports the real result (bytes, path, warnings). A failed join keeps its reason on screen. Starting parts and joining are queued correctly with the other list actions. All of it reads in Arabic.
+
+- Device link: a fake network announcement can no longer rename a paired device or hide its real address, and if something else answers at an address the other known addresses are still tried. Strangers on the network can no longer fill memory with fake devices. A changed file in a re-sent folder is sent again instead of being skipped; two receives of the same folder or download never write into the same folder; on storage without hard links a received file never replaces a file that appeared at the same moment; a torrent hand-over stopped halfway makes the old download recheck its files.
+
+- Torrent Peers tab: it no longer says the torrent is not running while it is downloading, a busy moment no longer empties the peer list (it says how many peers are connected when their details are unavailable), and the connection tables fit a narrow pane (Downloaded, Uploaded and Flags show only when the pane is wide).
+- Opening FluxDM again from the app icon while a download runs no longer crashes the app (the second launch is dropped cleanly). "Delete permanently" on a finished video now deletes even on a USB or network drive. The Recycle Bin refusal, its reasons, the "Not deleted" title and the paired-folder refusal now read in Arabic.
+
+- Link refresh keeps the old link and partial file unchanged when saved bytes fail a comparison with the new link (the message says to use Restart); with no saved bytes to compare it simply proceeds, and answering Replace in the browser-capture question keeps the bytes unchecked, with a note saying so. Shortened partial files fetch missing bytes again. New downloads avoid partial-file and checksum-sidecar name collisions. Device transfers sync received files before reporting success and reject overlapping or incomplete resume maps.
+
+- If FluxDM cannot save before exit and stays open, the message now says what is true: downloads were paused (or that pausing did not finish in time), every queue was stopped and must be started again, and torrents cannot resume until FluxDM is restarted; pausing a waiting download can no longer overwrite one that has just started.
+
+- Removing several finished downloads that cannot go to the Recycle Bin now names them (count and first names) and "Delete permanently" deletes only those, never the rest of the selection. A refused delete no longer leaves the row stuck as "being removed"; "Remove from list only" works on it afterwards. The Recycle Bin size check no longer assumes a larger bin than Windows gives, so a big file is never deleted for good without asking. A finished file whose size changed now says how to proceed. A paused torrent no longer shows its old peers, and peers that failed for a day are no longer redialled every 30 seconds. The tracker note "(added by you, not used: private torrent)" and "(offline)" read in Arabic.
+
+- The Arabic message for a failed pause, resume, restart, retry or reset now reads fully in Arabic (part of it stayed English), and a failed first-run look save really applies the chosen look until you close FluxDM.
+
+- Open on a finished download now says why when it cannot open the file (moved or deleted, no app set for it, access denied) instead of doing nothing. Pause, resume, pause all, retry, reset, restart and clear-finished report failures with the number of downloads, and Clear finished says how many were removed. A refused speed-limit change no longer shows the new limit, and dismissing the 'File already exists' dialog or a failed first-run look save now explains what happens next. Arabic included.
+- Reduced memory used by list updates and the work done between downloads; speed history now keeps its last minute without shifting older samples.
+- Toasts and device and queue views use fewer background timer wakeups.
+
+- A paired device can no longer save into a network folder (a \\server\share path) that is outside your allowed folders; the check was skipped for those paths by mistake.
+
+- Deleting a finished video or torrent whose files cannot go to the Recycle Bin now also keeps the download in the list, so the 'Delete permanently' choice can be retried; before, the row could be gone by then.
+
+- A paired device can now only choose save and move folders inside the folders you allow on this PC (Settings > Where files go > 'Folders other devices may save into'). It starts with Downloads, Videos, Documents, Music, Pictures and Desktop, plus your default save folder, and you can edit the list. Any other folder is refused with a message naming the folder and why. Existing settings get the starting list; a download already saved elsewhere is not touched, but a new add or move to such a folder from a paired device is refused until you add that folder to the list.
+
+- Deleting a downloaded file never silently deletes it for good any more. If a file cannot go to the Recycle Bin (it is on a USB, network or removable drive, bigger than the bin allows, or the bin is set to delete at once), FluxDM keeps the download in the list, says which file and why, and asks. There is a new 'Delete permanently (skip the Recycle Bin)' tick box in the Remove window on PC and, for a paired PC, on the phone (English and Arabic).
+
+- An address that already entered the right PIN is now locked for 5 minutes after 100 wrong PINs, so a device that later gets that address cannot guess the PIN without limit.
+
+- Another device can no longer save into your user profile folder itself, Documents\WindowsPowerShell, Documents\PowerShell, .ssh or .config (files there run or load at the next shell start).
+
+- A web page open on a paired phone can no longer lock that phone out of the PC remote: browser preflight requests are answered without counting as wrong PINs, and an address that already entered the right PIN is not locked by failed attempts.
+
+- Fixes the phone page's error message for files that could not be copied for sending.
+
+- After swiping FluxDM out of Recents, the phone app now ends itself once the last download or transfer finishes (it used to stay cached with the engine running), and reopening it while it was still running starts cleanly instead of risking a crash.
+
+- Sending a download from the phone browser to FluxDM no longer risks a duplicate: it retries only when FluxDM could not be reached at all, and if FluxDM did not answer in time it says the result is unknown instead of trying again.
+
+- Reopening the phone app after swiping it out of Recents, what happens now: with nothing running, it restarts cleanly in a fresh process and keeps what you opened it with (a shared link or file, the copied-link shortcut, a notification tap). While a download or transfer is still running, FluxDM no longer ends the process (that used to stop the work): the launch is dropped with a message to open it again once the work is done, and the shared link or tap is not kept; the work carries on and the process ends itself when idle. The same applies if Android destroys the backgrounded screen under memory pressure or with "Don't keep activities" while the process lives on: idle means a clean restart with the launch kept, busy means the message above. Rotation and other window changes do not recreate the screen at all, so they are not affected.
+
+- The phone's storage and battery permission prompts are now only marked as asked after you return from the system screen, so one that never opened is asked again next time.
+
+- Downloads caught in the phone browser are no longer lost when FluxDM's engine is briefly down: the browser retries for about 30 seconds, and says plainly if FluxDM still did not take it (English and Arabic).
+
+- Downloads caught in the phone browser are no longer lost when FluxDM's engine is briefly down: the browser retries for about 30 seconds, and says plainly if FluxDM still did not take it (English and Arabic).
+
+- Sending files or a folder from the phone now checks there is room for the copy first and tells you plainly, naming the item and the reason, when it could not be copied or when files in a folder could not be read (English and Arabic).
+
+- Folder sends from the phone work again after a broken change: the copy now names each file it writes, and two folders with the same cleaned name no longer merge.
+
+- Sending a folder from the phone no longer sends a short folder when a file cannot be read: the copy is dropped instead, and files whose names collide after cleaning get a number (name (2)) rather than overwriting each other.
+
+- Swiping FluxDM out of Recents on the phone no longer stops downloads or device transfers that are still running; the next cold start cleans up as before.
+
+- The phone app no longer restarts its engine when the system font weight, grammatical gender or mobile network codes change (the main screen now handles those changes itself).
+
+- Downloads from a mirror redirector (different servers, different ETags, same file) no longer stop as 'file changed': FluxDM now compares the actual bytes before deciding, and a real content change, even at the end of the saved part or on a third mirror, still stops the download.
+
+- A failed background save of the downloaded data no longer stops further background saves for the rest of the download; FluxDM retries after a pause and notes the problem once in the download's health log.
+
+- With backup links, a failing connection now retries after 1 second only twice, then waits longer each time, so the retries are no longer used up in half a minute.
+
+- A backup link that cannot resume or serves different bytes is now dropped on its own; the download carries on from the other links instead of stopping.
+- The old bookmarklet links (/add, /batch) can no longer refresh or replace a download's link; they only open the Add window. Requests that are not a page navigation (a hidden image, script or fetch) are refused, while the bookmarklets' popup windows keep working.
+
+- Updates only install the signed FluxDM-Setup. The old fallback to the portable FluxDM.exe is gone; when a release has no installer, no checksum or no signature, the update window says exactly which piece is missing and points to the release page. Arabic included.
+
+- 'Maximum connections per torrent' now shows 200 on PC and phone, the same default the engine uses, so saving Settings no longer lowers it silently, and the restart notice no longer appears when only the unset default is written.
+
+- Force recheck no longer gives up after 30 minutes on big torrents: the limit is the larger of 30 minutes and the torrent's size read at 15 MB/s plus half again (about 3 hours for 110 GB). If it still runs out, the message gives the minutes allowed and says everything verified so far and all downloaded data were kept; Arabic included.
+
+- Removing the only running download of a queue no longer shows 'Queue finished' or runs the queue's shutdown/sleep action.
+
+- Removing a download with its files now says exactly which files were left on disk (torrent files that could not be deleted, or a path too long for the Recycle Bin) instead of staying silent.
+
+- Removing a finished download with its file no longer deletes a file that changed size, turned into a folder, or is used by another row; the message names the file that was left.
+
+- When FluxDM refuses to delete a finished file (changed, now a folder, shared with another row, or a path too long for the Recycle Bin), the download now stays in the list so you can retry or choose Remove from list only.
+
+- A torrent stopped by a disk error starts again when you resume it (it used to stay stopped until restarted). A torrent with no connected peers retries peers it had given up on when trackers report them again, on Re-announce, and after 5 minutes without peers.
+- Peers a torrent gave up on are no longer redialled every 30 seconds when trackers keep reporting them: they keep their growing wait, and only Re-announce starts over. The 5-minute no-peers retry no longer asks trackers before their minimum interval has passed.
+- Private torrents only use their own first tracker; the extra trackers from Settings are no longer added to them.
+- The Trackers tab can copy every tracker of a torrent (Copy trackers), select rows, copy the selected ones, and edit or remove the trackers you added. The torrent file's own trackers stay read-only. Messages say exactly what was copied, changed or refused; the phone has Copy trackers too; all in Arabic. Changing or removing a tracker now applies to paused torrents too, and a failed change no longer leaves the torrent paused. Private torrents refuse extra trackers.
+- Torrent checks show the good data found so far, including progress for each file.
+- Pausing and resuming a torrent keeps its check. When drive error reports are on, old saved data is checked once per session.
+- Drive error reports are off by default. Settings > Behaviour lets you turn them on for each drive; the switches and messages also work in Arabic.
+- A torrent check no longer counts a piece as good when part of it could not be read from the drive.
+- A damaged block-check file or a link with an extreme expiry time no longer crashes FluxDM; the refresh page keeps a site's port number.
+- The speed graph draws its fill with every accent colour again; column widths are saved after resizing; a new download is scrolled into view in a grouped list; the tour finds Settings pages in Arabic.
+- Phone: speed-rule changes are really saved (and undone on screen when refused); a cancelled swipe or queue drag no longer acts.
+- A schedule time with extra text after it ("09:30:xx") is refused instead of quietly read as 09:30.
+- Phone: some file errors were wrongly reported as "disk full" or "another program has the file open". Video sections with an endless time ("inf") are refused.
+- Devices: sending two folders with the same name keeps them apart ("Folder" and "Folder (1)"); links inside a sent folder are no longer followed, so nothing outside the folder is sent.
+- Devices: if the device key can't be read for a moment, FluxDM no longer makes a new identity (which made paired devices pair again).
+- Code cleanup across the desktop and phone app (less code, same behaviour); console artwork no longer re-reads .torrent files every few seconds; settings are read without copying them.
+- PlayStation torrents can find their title and artwork from the title ID in their files. Numbered games and films no longer take artwork from a different entry in the series.
+
 ## 3.8.1 — 2026-11-25
 
 - Phone: the bottom bar keeps its labels clear of rounded screen corners.
@@ -791,3 +909,4 @@ What changed for people using FluxDM. Developer notes are in `PROJECT_STATE.md`.
 ## 2.1.6 and earlier
 
 See the release notes on GitHub and `PROJECT_STATE.md`.
+
